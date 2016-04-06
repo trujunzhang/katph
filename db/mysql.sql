@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS website;
-CREATE TABLE website (
+DROP TABLE IF EXISTS itunes;
+CREATE TABLE itunes (
   guid CHAR(32) PRIMARY KEY,
   name TEXT,
   description TEXT,

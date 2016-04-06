@@ -10,7 +10,8 @@ class FilterWordsPipeline(object):
     description"""
 
     # put all words in lowercase
-    words_to_filter = ['politics', 'religion']
+    # words_to_filter = ['politics', 'religion']
+    words_to_filter = []
 
     def process_item(self, item, spider):
         for word in self.words_to_filter:
@@ -71,20 +72,20 @@ class MySQLStorePipeline(object):
         now = datetime.utcnow().replace(microsecond=0).isoformat(' ')
 
         conn.execute("""SELECT EXISTS(
-            SELECT 1 FROM website WHERE guid = %s
+            SELECT 1 FROM itunes WHERE guid = %s
         )""", (guid, ))
         ret = conn.fetchone()[0]
 
         if ret:
             conn.execute("""
-                UPDATE website
+                UPDATE itunes
                 SET name=%s, description=%s, url=%s, updated=%s
                 WHERE guid=%s
             """, (item['name'], item['description'], item['url'], now, guid))
             spider.log("Item updated in db: %s %r" % (guid, item))
         else:
             conn.execute("""
-                INSERT INTO website (guid, name, description, url, updated)
+                INSERT INTO itunes (guid, name, description, url, updated)
                 VALUES (%s, %s, %s, %s, %s)
             """, (guid, item['name'], item['description'], item['url'], now))
             spider.log("Item stored in db: %s %r" % (guid, item))

@@ -96,8 +96,8 @@ class ItunesSpider(scrapy.Spider):
 
         item = ItuneApp()
 
-        item['NameOfApplication'] = NameOfApplication
-        item['Itunes_Link'] = Itunes_Link
+        item['name'] = NameOfApplication
+        item['url'] = Itunes_Link
         item['thumbnail'] = thumbnail
 
         item['LastTimeUpdatedDate'] = LastTimeUpdatedDate

@@ -15,7 +15,7 @@ class FilterWordsPipeline(object):
 
     def process_item(self, item, spider):
         for word in self.words_to_filter:
-            desc = item.get('description') or ''
+            desc = item.get('name') or ''
             if word in desc.lower():
                 raise DropItem("Contains forbidden word: %s" % word)
         else:
@@ -25,7 +25,7 @@ class FilterWordsPipeline(object):
 class RequiredFieldsPipeline(object):
     """A pipeline to ensure the item have the required fields."""
 
-    required_fields = ('name', 'description', 'url')
+    required_fields = ('name', 'thumbnail', 'url')
 
     def process_item(self, item, spider):
         for field in self.required_fields:
@@ -79,15 +79,15 @@ class MySQLStorePipeline(object):
         if ret:
             conn.execute("""
                 UPDATE itunes
-                SET name=%s, description=%s, url=%s, updated=%s
+                SET name=%s, thumbnail=%s, url=%s, updated=%s
                 WHERE guid=%s
-            """, (item['name'], item['description'], item['url'], now, guid))
+            """, (item['name'], item['thumbnail'], item['url'], now, guid))
             spider.log("Item updated in db: %s %r" % (guid, item))
         else:
             conn.execute("""
-                INSERT INTO itunes (guid, name, description, url, updated)
+                INSERT INTO itunes (guid, name, thumbnail, url, updated)
                 VALUES (%s, %s, %s, %s, %s)
-            """, (guid, item['name'], item['description'], item['url'], now))
+            """, (guid, item['name'], item['thumbnail'], item['url'], now))
             spider.log("Item stored in db: %s %r" % (guid, item))
 
     def _handle_error(self, failure, item, spider):

@@ -61,15 +61,15 @@ NEWSPIDER_MODULE = 'katph.spiders'
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
+# ITEM_PIPELINES = {
 #    'katph.pipelines.SomePipeline': 300,
-#}
+# }
 
-ITEM_PIPELINES = [
-    'dirbot.pipelines.RequiredFieldsPipeline',
-    'dirbot.pipelines.FilterWordsPipeline',
-    'dirbot.pipelines.MySQLStorePipeline',
-]
+ITEM_PIPELINES = {
+    'katph.pipelines.RequiredFieldsPipeline':300,
+    'katph.pipelines.FilterWordsPipeline':800,
+    'katph.pipelines.MySQLStorePipeline':400,
+}
 
 MYSQL_HOST = 'localhost'
 MYSQL_DBNAME = 'katph'

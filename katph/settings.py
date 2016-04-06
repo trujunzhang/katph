@@ -71,6 +71,11 @@ ITEM_PIPELINES = [
     'dirbot.pipelines.MySQLStorePipeline',
 ]
 
+MYSQL_HOST = 'localhost'
+MYSQL_DBNAME = 'katph'
+MYSQL_USER = 'katphuser'
+MYSQL_PASSWD = 'wanghao720'
+
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html

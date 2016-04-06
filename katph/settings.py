@@ -65,6 +65,13 @@ NEWSPIDER_MODULE = 'katph.spiders'
 #    'katph.pipelines.SomePipeline': 300,
 #}
 
+ITEM_PIPELINES = [
+    'dirbot.pipelines.RequiredFieldsPipeline',
+    'dirbot.pipelines.FilterWordsPipeline',
+    'dirbot.pipelines.MySQLStorePipeline',
+]
+
+
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
 # NOTE: AutoThrottle will honour the standard settings for concurrency and delay

@@ -34,6 +34,8 @@ class DmozItem(scrapy.Item):
 
 
 class ItuneApp(scrapy.Item):
+    guid = scrapy.Field()
+
     NameOfApplication = scrapy.Field()
 
     Itunes_Link = scrapy.Field()

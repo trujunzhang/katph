@@ -12,6 +12,9 @@ from scrapy.conf import settings
 from scrapy.exceptions import DropItem
 from scrapy import log
 
+from datetime import datetime
+from hashlib import md5
+
 class MongoPipeline(object):
     collection_name = 'katph_itunes'
 
@@ -34,11 +37,20 @@ class MongoPipeline(object):
         self.client.close()
 
     def process_item(self, item, spider):
+        guid = self._get_guid(item)
+        item["guid"] = guid
+
         valid = True
         for data in item:
             if not data:
                 valid = False
                 raise DropItem("Missing {0}!".format(data))
+
+        if valid:
+            cursor = self.db[self.collection_name].find({'guid':guid})
+            if cursor.count():
+                valid = False
+                raise DropItem("Multiple row {0}!".format(data))
         if valid:
             self.db[self.collection_name].insert(dict(item))
             log.msg("Question added to MongoDB database!",

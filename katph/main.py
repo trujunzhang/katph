@@ -13,7 +13,7 @@ class Utils:
             print("Sorry, I can not remove %s file." % self.filename)
 
     def execute(self,module):
-        command = ("scrapy crawl %s -o items.json" % module)
+        command = ("scrapy crawl %s " % module)
         # command = ("scrapy crawl selenium  -a category=dublin -o items.json -t json")
         cmdline.execute(command.split())
 

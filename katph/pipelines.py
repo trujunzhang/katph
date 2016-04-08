@@ -9,7 +9,8 @@
 import pymongo
 
 from scrapy.conf import settings
-
+from scrapy.exceptions import DropItem
+from scrapy import log
 
 class MongoPipeline(object):
     collection_name = 'katph_itunes'
@@ -33,5 +34,13 @@ class MongoPipeline(object):
         self.client.close()
 
     def process_item(self, item, spider):
-        self.db[self.collection_name].insert(dict(item))
+        valid = True
+        for data in item:
+            if not data:
+                valid = False
+                raise DropItem("Missing {0}!".format(data))
+        if valid:
+            self.db[self.collection_name].insert(dict(item))
+            log.msg("Question added to MongoDB database!",
+                    level=log.DEBUG, spider=spider)
         return item

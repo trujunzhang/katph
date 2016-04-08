@@ -44,3 +44,13 @@ class MongoPipeline(object):
             log.msg("Question added to MongoDB database!",
                     level=log.DEBUG, spider=spider)
         return item
+
+    def _handle_error(self, failure, item, spider):
+        """Handle occurred on db interaction."""
+        # do nothing, just log
+        log.err(failure)
+
+    def _get_guid(self, item):
+        """Generates an unique identifier for a given item."""
+        # hash based solely in the url field
+        return md5(item['url']).hexdigest()

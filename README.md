@@ -6,6 +6,8 @@
  scrapy genspider apple apple.com
  
 pip freeze > requirements.txt
+
+pip install -r requirements.txt
  
 scrapy crawl itunes
  

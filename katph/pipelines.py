@@ -65,4 +65,4 @@ class MongoPipeline(object):
     def _get_guid(self, item):
         """Generates an unique identifier for a given item."""
         # hash based solely in the url field
-        return md5(item['url']).hexdigest()
+        return md5(item['NameOfApplication']).hexdigest()

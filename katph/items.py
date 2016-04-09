@@ -57,6 +57,32 @@ class ItuneApp(scrapy.Item):
     # description = scrapy.Field()
 
 
+class GooglePlay(scrapy.Item):
+    guid = scrapy.Field()
+    updatedAt = scrapy.Field()
+
+    name = scrapy.Field()
+
+    url = scrapy.Field()
+    thumbnail = scrapy.Field()
+
+    appLastUpdated = scrapy.Field()
+
+    developer = scrapy.Field()
+    website = scrapy.Field()
+
+    ofReviews = scrapy.Field()
+    ofReviewsCurrent = scrapy.Field()
+
+    starts = scrapy.Field()
+    startsCurrent = scrapy.Field()
+
+    version = scrapy.Field()
+    # description = scrapy.Field()
+
+
+
+
 class KatPHItem(scrapy.Item):
     title = scrapy.Field()
     link = scrapy.Field()

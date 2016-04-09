@@ -27,6 +27,7 @@ def main():
     # utils.execute("stackoverflow")
 
     utils.execute("itunes")
+    # utils.execute("googleplay")
     # utils.execute("stack")
     # utils.execute("apple")
     # utils.execute("selenium")

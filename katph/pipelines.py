@@ -38,7 +38,9 @@ class MongoPipeline(object):
 
     def process_item(self, item, spider):
         guid = self._get_guid(item)
+
         item["guid"] = guid
+        item["updatedAt"] = datetime.utcnow().replace(microsecond=0).isoformat(' ')
 
         valid = True
         for data in item:

@@ -52,7 +52,7 @@ class MongoPipeline(object):
             cursor = self.db[self.collection_name].find({'guid':guid})
             if cursor.count():
                 valid = False
-                raise DropItem("Multiple row {0}!".format(data))
+                raise DropItem("Duplicate item found: {0}!".format(data))
         if valid:
             self.db[self.collection_name].insert(dict(item))
             log.msg("Question added to MongoDB database!",

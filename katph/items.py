@@ -34,6 +34,9 @@ class DmozItem(scrapy.Item):
 
 
 class ItuneApp(scrapy.Item):
+    guid = scrapy.Field()
+    updatedAt = scrapy.Field()
+
     name = scrapy.Field()
 
     url = scrapy.Field()

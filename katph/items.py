@@ -34,17 +34,15 @@ class DmozItem(scrapy.Item):
 
 
 class ItuneApp(scrapy.Item):
-    guid = scrapy.Field()
+    name = scrapy.Field()
 
-    NameOfApplication = scrapy.Field()
-
-    Itunes_Link = scrapy.Field()
+    url = scrapy.Field()
     thumbnail = scrapy.Field()
 
-    LastTimeUpdatedDate = scrapy.Field()
+    appLastUpdated = scrapy.Field()
 
-    Developer = scrapy.Field()
-    Website = scrapy.Field()
+    developer = scrapy.Field()
+    website = scrapy.Field()
 
     ofReviews = scrapy.Field()
     ofReviewsCurrent = scrapy.Field()
